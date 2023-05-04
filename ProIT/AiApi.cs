@@ -1,44 +1,52 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-public class AiApi
+namespace ProIT
 {
-    private readonly HttpClient _client;
-    private readonly string _apiKey;
-
-    public int ChatId { get; set; }
-    public int UserId { get; set; }
-
-    public AiApi(string baseUrl, string apiKey, int chatId, int userId)
+    public class AiApi
     {
-        _client = new HttpClient { BaseAddress = new Uri(baseUrl) };
-        _client.DefaultRequestHeaders.Accept.Clear();
-        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        _apiKey = apiKey;
-        ChatId = chatId;
-        UserId = userId;
-    }
+        public static HttpClient _httpClient;
+        public static readonly string _apiBaseUrl = "https://89.22.107.179:8000/api/process_message";
+        public static string _token;
 
-    public async Task<string> SendMessageAsync(string messageText)
-    {
-        string chatHistory = "";
-        var data = new
+        public AiApi(string token)
         {
-            chat_id = ChatId,
-            user_id = UserId,
-            message_text = messageText,
-            chat_history = chatHistory,
-            api_key = _apiKey
-        };
+            _httpClient = new HttpClient();
+            _token = token;
 
-        var jsonString = JsonConvert.SerializeObject(data);
-        var content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await _client.PostAsync("api/process_message", content);
-        response.EnsureSuccessStatusCode();
+            // Only use this line for testing purposes with self-signed certificates.
+            // Remove this line in a production environment.
+            _httpClient.DefaultRequestHeaders.Add("Connection", "close");
+        }
 
-        return await response.Content.ReadAsStringAsync();
+        public async Task<string> SendMessage(string message)
+        {
+            var data = new
+            {
+                chat_id = 1,
+                user_id = 2,
+                message_text = message,
+                chat_history = "",
+                api_key = _token
+            };
+
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(_apiBaseUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var responseMessage = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                return responseMessage.response;
+            }
+            else
+            {
+                throw new Exception($"Error sending message: {response.StatusCode}");
+            }
+        }
     }
 }
