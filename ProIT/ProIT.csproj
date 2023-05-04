@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\packages\IronPdf.Slim.2023.4.4\build\IronPdf.Slim.props" Condition="Exists('..\packages\IronPdf.Slim.2023.4.4\build\IronPdf.Slim.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{17DE89F3-8D85-4AFD-A3B3-7AF60E9DA884}</ProjectGuid>
+        <OutputType>WinExe</OutputType>
+        <RootNamespace>ProIT</RootNamespace>
+        <AssemblyName>ProIT</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <Deterministic>true</Deterministic>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+          <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+        </Reference>
+        <Reference Include="BitMiracle.LibTiff.NET, Version=2.4.649.0, Culture=neutral, PublicKeyToken=53879b3e20e7a7d6, processorArchitecture=MSIL">
+          <HintPath>..\packages\BitMiracle.LibTiff.NET.2.4.649\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
+        </Reference>
+        <Reference Include="Google.Protobuf, Version=3.22.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+          <HintPath>..\packages\Google.Protobuf.3.22.0\lib\net45\Google.Protobuf.dll</HintPath>
+        </Reference>
+        <Reference Include="Grpc.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+          <HintPath>..\packages\Grpc.Core.2.46.6\lib\net45\Grpc.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+          <HintPath>..\packages\Grpc.Core.Api.2.46.6\lib\net45\Grpc.Core.Api.dll</HintPath>
+        </Reference>
+        <Reference Include="IronOcr, Version=2023.4.13.0, Culture=neutral, PublicKeyToken=c2cbcea5ea3f6d8d, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronOcr.2023.4.13\lib\netstandard2.0\IronOcr.dll</HintPath>
+        </Reference>
+        <Reference Include="IronPdf, Version=2023.4.0.4, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronPdf.Slim.2023.4.4\lib\netstandard2.0\IronPdf.dll</HintPath>
+        </Reference>
+        <Reference Include="IronPython, Version=3.4.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronPython.3.4.0\lib\net462\IronPython.dll</HintPath>
+        </Reference>
+        <Reference Include="IronPython.Modules, Version=3.4.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronPython.3.4.0\lib\net462\IronPython.Modules.dll</HintPath>
+        </Reference>
+        <Reference Include="IronPython.SQLite, Version=3.4.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronPython.3.4.0\lib\net462\IronPython.SQLite.dll</HintPath>
+        </Reference>
+        <Reference Include="IronPython.Wpf, Version=3.4.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronPython.3.4.0\lib\net462\IronPython.Wpf.dll</HintPath>
+        </Reference>
+        <Reference Include="IronSoftware.Drawing.Common, Version=2023.3.3.0, Culture=neutral, PublicKeyToken=8d7e55c97b3e9835, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronSoftware.System.Drawing.2023.3.3\lib\netstandard2.0\IronSoftware.Drawing.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+          <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Dynamic, Version=1.3.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\DynamicLanguageRuntime.1.3.3\lib\net452\Microsoft.Dynamic.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Configuration.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Http, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Http.6.0.0\lib\net461\Microsoft.Extensions.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.6.0.0\lib\net461\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Scripting, Version=1.3.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\DynamicLanguageRuntime.1.3.3\lib\net452\Microsoft.Scripting.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Scripting.Metadata, Version=1.3.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+          <HintPath>..\packages\DynamicLanguageRuntime.1.3.3\lib\net452\Microsoft.Scripting.Metadata.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.VisualBasic.Compatibility" />
+        <Reference Include="mscorlib" />
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="OpenAI.GPT3, Version=6.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Betalgo.OpenAI.GPT3.6.8.4\lib\netstandard2.0\OpenAI.GPT3.dll</HintPath>
+        </Reference>
+        <Reference Include="OpenAI_API, Version=1.7.2.0, Culture=neutral, PublicKeyToken=1b0a4c0430762146, processorArchitecture=MSIL">
+          <HintPath>..\packages\OpenAI.1.7.2\lib\netstandard2.0\OpenAI_API.dll</HintPath>
+        </Reference>
+        <Reference Include="Patagames.Ocr, Version=4.5.2.472, Culture=neutral, PublicKeyToken=be14d8e1fe46e570, processorArchitecture=MSIL">
+          <HintPath>..\packages\Tesseract.Net.SDK.4.5.411\lib\net472\Patagames.Ocr.dll</HintPath>
+        </Reference>
+        <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronOcr.2023.4.13\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+        </Reference>
+        <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+          <HintPath>..\packages\SixLabors.ImageSharp.2.1.3\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="SixLabors.ImageSharp.Drawing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+          <HintPath>..\packages\IronOcr.2023.4.13\lib\netstandard2.0\SixLabors.ImageSharp.Drawing.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.DataAnnotations" />
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data.OracleClient" />
+        <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Drawing.Common.5.0.3\lib\net461\System.Drawing.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net" />
+        <Reference Include="System.Net.Http.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Net.Http.Json.6.0.0\lib\net461\System.Net.Http.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security" />
+        <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceProcess" />
+        <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Text.Json.6.0.0\lib\net461\System.Text.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Transactions" />
+        <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Web" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Deployment" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+        <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Tesseract.5.2.0\lib\net47\Tesseract.dll</HintPath>
+        </Reference>
+        <Reference Include="TesseractOCR, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\TesseractOCR.5.3.2\lib\net461\TesseractOCR.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.Core, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.DocumentLayoutAnalysis, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.DocumentLayoutAnalysis.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.Fonts, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.Fonts.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.Package, Version=0.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.Package.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.Tokenization, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.Tokenization.dll</HintPath>
+        </Reference>
+        <Reference Include="UglyToad.PdfPig.Tokens, Version=0.1.8.0, Culture=neutral, PublicKeyToken=605d367334e74123, processorArchitecture=MSIL">
+          <HintPath>..\packages\PdfPig.0.1.8-alpha-20230412-db058\lib\net47\UglyToad.PdfPig.Tokens.dll</HintPath>
+        </Reference>
+        <Reference Include="WindowsBase" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="AIForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="AIForm.Designer.cs">
+          <DependentUpon>AIForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="applicationForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="applicationForm.Designer.cs">
+          <DependentUpon>applicationForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="applicationProcess.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="applicationProcess.Designer.cs">
+          <DependentUpon>applicationProcess.cs</DependentUpon>
+        </Compile>
+        <Compile Include="createApplicationForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="createApplicationForm.Designer.cs">
+          <DependentUpon>createApplicationForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CreateForm\createNewField.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="CreateForm\createNewField.Designer.cs">
+          <DependentUpon>createNewField.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CreateForm\createNewForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="CreateForm\createNewForm.Designer.cs">
+          <DependentUpon>createNewForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CustomDeleteDialog.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="CustomDeleteDialog.Designer.cs">
+          <DependentUpon>CustomDeleteDialog.cs</DependentUpon>
+        </Compile>
+        <Compile Include="FieldsForm.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="FieldsForm.Designer.cs">
+          <DependentUpon>FieldsForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Form1.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Form1.Designer.cs">
+            <DependentUpon>Form1.cs</DependentUpon>
+        </Compile>
+        <Compile Include="HashPass.cs" />
+        <Compile Include="log.cs" />
+        <Compile Include="LogConf.cs" />
+        <Compile Include="MainForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="MainForm.Designer.cs">
+          <DependentUpon>MainForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="MitarbInfo.cs" />
+        <Compile Include="passwordgen.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="passwordgen.Designer.cs">
+          <DependentUpon>passwordgen.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Program.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="AiApi.cs" />
+        <Compile Include="test.cs" />
+        <Compile Include="tests.cs">
+          <SubType>UserControl</SubType>
+        </Compile>
+        <Compile Include="tests.Designer.cs">
+          <DependentUpon>tests.cs</DependentUpon>
+        </Compile>
+        <Compile Include="uploadApplicationForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="uploadApplicationForm.Designer.cs">
+          <DependentUpon>uploadApplicationForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="UserControl.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="UserControl.Designer.cs">
+          <DependentUpon>UserControl.cs</DependentUpon>
+        </Compile>
+        <EmbeddedResource Include="AIForm.resx">
+          <DependentUpon>AIForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="applicationForm.resx">
+          <DependentUpon>applicationForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="applicationProcess.resx">
+          <DependentUpon>applicationProcess.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="createApplicationForm.resx">
+          <DependentUpon>createApplicationForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="CreateForm\createNewField.resx">
+          <DependentUpon>createNewField.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="CreateForm\createNewForm.resx">
+          <DependentUpon>createNewForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Form1.resx">
+          <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="MainForm.resx">
+          <DependentUpon>MainForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="passwordgen.resx">
+          <DependentUpon>passwordgen.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <SubType>Designer</SubType>
+        </EmbeddedResource>
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Include="uploadApplicationForm.resx">
+          <DependentUpon>uploadApplicationForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="UserControl.resx">
+          <DependentUpon>UserControl.cs</DependentUpon>
+        </EmbeddedResource>
+        <None Include="bin\Debug\ProIT.exe.config" />
+        <None Include="packages.config" />
+        <None Include="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+        <Compile Include="Properties\Settings.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="bin\Debug\BCrypt.Net-Next.dll" />
+      <Content Include="bin\Debug\BCrypt.Net-Next.xml" />
+      <Content Include="bin\Debug\BitMiracle.LibTiff.NET.dll" />
+      <Content Include="bin\Debug\BitMiracle.LibTiff.NET.xml" />
+      <Content Include="bin\Debug\Google.Protobuf.dll" />
+      <Content Include="bin\Debug\Google.Protobuf.pdb" />
+      <Content Include="bin\Debug\Google.Protobuf.xml" />
+      <Content Include="bin\Debug\Grpc.Core.Api.dll" />
+      <Content Include="bin\Debug\Grpc.Core.Api.pdb" />
+      <Content Include="bin\Debug\Grpc.Core.Api.xml" />
+      <Content Include="bin\Debug\Grpc.Core.dll" />
+      <Content Include="bin\Debug\Grpc.Core.pdb" />
+      <Content Include="bin\Debug\Grpc.Core.xml" />
+      <Content Include="bin\Debug\grpc_csharp_ext.x64.dll" />
+      <Content Include="bin\Debug\grpc_csharp_ext.x86.dll" />
+      <Content Include="bin\Debug\IronOcr.dll" />
+      <Content Include="bin\Debug\IronOcr.xml" />
+      <Content Include="bin\Debug\IronPdf.dll" />
+      <Content Include="bin\Debug\IronPdf.xml" />
+      <Content Include="bin\Debug\IronSoftware.Drawing.Common.dll" />
+      <Content Include="bin\Debug\IronSoftware.Drawing.Common.pdb" />
+      <Content Include="bin\Debug\IronSoftware.Drawing.Common.xml" />
+      <Content Include="bin\Debug\libgrpc_csharp_ext.x64.dylib" />
+      <Content Include="bin\Debug\libgrpc_csharp_ext.x64.so" />
+      <Content Include="bin\Debug\log4net.dll" />
+      <Content Include="bin\Debug\log4net.json" />
+      <Content Include="bin\Debug\log4net.xml" />
+      <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll" />
+      <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Binder.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Binder.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Configuration.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Http.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Http.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Logging.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Logging.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Options.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Options.xml" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Primitives.dll" />
+      <Content Include="bin\Debug\Microsoft.Extensions.Primitives.xml" />
+      <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+      <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+      <Content Include="bin\Debug\OcrData\German.ocrdata" />
+      <Content Include="bin\Debug\OpenAI_API.dll" />
+      <Content Include="bin\Debug\OpenAI_API.xml" />
+      <Content Include="bin\Debug\Patagames.Ocr.dll" />
+      <Content Include="bin\Debug\Patagames.Ocr.xml" />
+      <Content Include="bin\Debug\ProIT.exe" />
+      <Content Include="bin\Debug\ProIT.pdb" />
+      <Content Include="bin\Debug\ProITDatBase.accdb" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\chrome_100_percent.pak" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\chrome_200_percent.pak" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\chrome_elf.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\concrt140.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\d3dcompiler_47.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\dxva2.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\eng.base.traineddata" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\eng.best.traineddata" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\eng.fast.traineddata" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\eng.user-patterns" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\eng.user-words" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\icudtl.dat" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\IronCefSubprocess.exe" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\IronInterop.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\IronPdf.Native.Chrome.deployment.json" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\IronPdfInterop.dll" />
+      <Content Include="bin\Debug\runtimes\win-x64\native\libcef.dll" />
+      <Content Include="bin\Debug\SixLabors.Fonts.dll" />
+      <Content Include="bin\Debug\SixLabors.ImageSharp.dll" />
+      <Content Include="bin\Debug\SixLabors.ImageSharp.Drawing.dll" />
+      <Content Include="bin\Debug\SixLabors.ImageSharp.xml" />
+      <Content Include="bin\Debug\System.Buffers.dll" />
+      <Content Include="bin\Debug\System.Buffers.xml" />
+      <Content Include="bin\Debug\System.Configuration.ConfigurationManager.dll" />
+      <Content Include="bin\Debug\System.Configuration.ConfigurationManager.xml" />
+      <Content Include="bin\Debug\System.Drawing.Common.dll" />
+      <Content Include="bin\Debug\System.Memory.dll" />
+      <Content Include="bin\Debug\System.Memory.xml" />
+      <Content Include="bin\Debug\System.Numerics.Vectors.dll" />
+      <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
+      <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+      <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+      <Content Include="bin\Debug\System.Security.AccessControl.dll" />
+      <Content Include="bin\Debug\System.Security.AccessControl.xml" />
+      <Content Include="bin\Debug\System.Security.Permissions.dll" />
+      <Content Include="bin\Debug\System.Security.Permissions.xml" />
+      <Content Include="bin\Debug\System.Security.Principal.Windows.dll" />
+      <Content Include="bin\Debug\System.Security.Principal.Windows.xml" />
+      <Content Include="bin\Debug\System.Text.Encoding.CodePages.dll" />
+      <Content Include="bin\Debug\System.Text.Encoding.CodePages.xml" />
+      <Content Include="bin\Debug\System.Threading.Tasks.Extensions.dll" />
+      <Content Include="bin\Debug\System.Threading.Tasks.Extensions.xml" />
+      <Content Include="bin\Debug\System.ValueTuple.dll" />
+      <Content Include="bin\Debug\System.ValueTuple.xml" />
+      <Content Include="bin\Debug\Tesseract.dll" />
+      <Content Include="bin\Debug\TesseractOCR.dll" />
+      <Content Include="bin\Debug\TesseractOCR.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Core.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Core.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Core.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.DocumentLayoutAnalysis.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.DocumentLayoutAnalysis.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.DocumentLayoutAnalysis.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Fonts.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Fonts.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Fonts.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Package.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Package.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Package.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokenization.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokenization.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokenization.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokens.dll" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokens.pdb" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.Tokens.xml" />
+      <Content Include="bin\Debug\UglyToad.PdfPig.xml" />
+      <Content Include="chat\chat.js" />
+      <Content Include="chat\chatbot.py" />
+      <Content Include="chat\clear.py" />
+      <Content Include="chat\codebot.py" />
+      <Content Include="chat\Message.py" />
+      <Content Include="tessdata\configs\config.cfg" />
+      <Content Include="tessdata\eng.traineddata" />
+      <Content Include="tessdata\equ.traineddata" />
+      <Content Include="tessdata\osd.traineddata" />
+      <Content Include="tessdata\pdf.ttf" />
+      <Content Include="tessdata\pdf.ttx" />
+      <Content Include="Tesseract-OCR\ambiguous_words.exe" />
+      <Content Include="Tesseract-OCR\classifier_tester.exe" />
+      <Content Include="Tesseract-OCR\cntraining.exe" />
+      <Content Include="Tesseract-OCR\combine_tessdata.exe" />
+      <Content Include="Tesseract-OCR\dawg2wordlist.exe" />
+      <Content Include="Tesseract-OCR\doc\AUTHORS" />
+      <Content Include="Tesseract-OCR\doc\COPYING" />
+      <Content Include="Tesseract-OCR\doc\eurotext.tif" />
+      <Content Include="Tesseract-OCR\doc\phototest.tif" />
+      <Content Include="Tesseract-OCR\doc\README" />
+      <Content Include="Tesseract-OCR\doc\ReleaseNotes" />
+      <Content Include="Tesseract-OCR\java\ScrollView.jar" />
+      <Content Include="Tesseract-OCR\mftraining.exe" />
+      <Content Include="Tesseract-OCR\output\ocr_output_buffer.txt" />
+      <Content Include="Tesseract-OCR\shapeclustering.exe" />
+      <Content Include="Tesseract-OCR\tessdata\chi_sim.traineddata" />
+      <Content Include="Tesseract-OCR\tessdata\configs\ambigs.train" />
+      <Content Include="Tesseract-OCR\tessdata\configs\api_config" />
+      <Content Include="Tesseract-OCR\tessdata\configs\bigram" />
+      <Content Include="Tesseract-OCR\tessdata\configs\box.train" />
+      <Content Include="Tesseract-OCR\tessdata\configs\box.train.stderr" />
+      <Content Include="Tesseract-OCR\tessdata\configs\digits" />
+      <Content Include="Tesseract-OCR\tessdata\configs\hocr" />
+      <Content Include="Tesseract-OCR\tessdata\configs\inter" />
+      <Content Include="Tesseract-OCR\tessdata\configs\kannada" />
+      <Content Include="Tesseract-OCR\tessdata\configs\linebox" />
+      <Content Include="Tesseract-OCR\tessdata\configs\logfile" />
+      <Content Include="Tesseract-OCR\tessdata\configs\makebox" />
+      <Content Include="Tesseract-OCR\tessdata\configs\quiet" />
+      <Content Include="Tesseract-OCR\tessdata\configs\rebox" />
+      <Content Include="Tesseract-OCR\tessdata\configs\strokewidth" />
+      <Content Include="Tesseract-OCR\tessdata\configs\unlv" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.bigrams" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.fold" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.lm" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.lm_" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.nn" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.params" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.size" />
+      <Content Include="Tesseract-OCR\tessdata\eng.cube.word-freq" />
+      <Content Include="Tesseract-OCR\tessdata\eng.tesseract_cube.nn" />
+      <Content Include="Tesseract-OCR\tessdata\eng.traineddata" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\batch" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\batch.nochop" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\matdemo" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\msdemo" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\nobatch" />
+      <Content Include="Tesseract-OCR\tessdata\tessconfigs\segdemo" />
+      <Content Include="Tesseract-OCR\tesseract.exe" />
+      <Content Include="Tesseract-OCR\unicharset_extractor.exe" />
+      <Content Include="Tesseract-OCR\wordlist2dawg.exe" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="UserControls" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Import Project="..\packages\IronOcr.2023.4.13\build\net\IronOcr.targets" Condition="Exists('..\packages\IronOcr.2023.4.13\build\net\IronOcr.targets')" />
+    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+      <PropertyGroup>
+        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      </PropertyGroup>
+      <Error Condition="!Exists('..\packages\IronOcr.2023.4.13\build\net\IronOcr.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\IronOcr.2023.4.13\build\net\IronOcr.targets'))" />
+      <Error Condition="!Exists('..\packages\IronOcr.Languages.German.2020.11.2\build\IronOcr.Languages.German.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\IronOcr.Languages.German.2020.11.2\build\IronOcr.Languages.German.targets'))" />
+      <Error Condition="!Exists('..\packages\IronPdf.Native.Chrome.Windows.2023.3.12968\build\net\IronPdf.Native.Chrome.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\IronPdf.Native.Chrome.Windows.2023.3.12968\build\net\IronPdf.Native.Chrome.Windows.targets'))" />
+      <Error Condition="!Exists('..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets'))" />
+      <Error Condition="!Exists('..\packages\IronPdf.Slim.2023.4.4\build\IronPdf.Slim.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\IronPdf.Slim.2023.4.4\build\IronPdf.Slim.props'))" />
+      <Error Condition="!Exists('..\packages\Tesseract.Net.SDK.4.5.411\build\Tesseract.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.Net.SDK.4.5.411\build\Tesseract.Net.SDK.targets'))" />
+      <Error Condition="!Exists('..\packages\TesseractOCR.5.3.2\build\TesseractOCR.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\TesseractOCR.5.3.2\build\TesseractOCR.targets'))" />
+      <Error Condition="!Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.5.2.0\build\Tesseract.targets'))" />
+      <Error Condition="!Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
+    </Target>
+    <Import Project="..\packages\IronOcr.Languages.German.2020.11.2\build\IronOcr.Languages.German.targets" Condition="Exists('..\packages\IronOcr.Languages.German.2020.11.2\build\IronOcr.Languages.German.targets')" />
+    <Import Project="..\packages\IronPdf.Native.Chrome.Windows.2023.3.12968\build\net\IronPdf.Native.Chrome.Windows.targets" Condition="Exists('..\packages\IronPdf.Native.Chrome.Windows.2023.3.12968\build\net\IronPdf.Native.Chrome.Windows.targets')" />
+    <Import Project="..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" />
+    <Import Project="..\packages\Tesseract.Net.SDK.4.5.411\build\Tesseract.Net.SDK.targets" Condition="Exists('..\packages\Tesseract.Net.SDK.4.5.411\build\Tesseract.Net.SDK.targets')" />
+    <Import Project="..\packages\TesseractOCR.5.3.2\build\TesseractOCR.targets" Condition="Exists('..\packages\TesseractOCR.5.3.2\build\TesseractOCR.targets')" />
+    <Import Project="..\packages\Tesseract.5.2.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" />
+    <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
+</Project>
